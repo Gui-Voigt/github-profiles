@@ -31,8 +31,9 @@ export default{
 
   methods: {
     reqApi(userName){
-      this.userInfos = getUser(userName)
       let reposResponse = getRepos(userName)
+
+      this.userInfos = getUser(userName)
       this.reposInfos = reposResponse[0]
       this.userLoaded = reposResponse[1]
     }
@@ -47,7 +48,6 @@ export default{
   <div>
     <Header />
     <Content @sendUsername="reqApi" />
-    {{userLoaded}}
   </div>
 </template>
 
