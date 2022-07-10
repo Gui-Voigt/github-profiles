@@ -1,16 +1,17 @@
 import axios from 'axios'
 
-const apiRequest = (userName) => {
-    let userInfos
+var userInfos = {}
+
+const getUser = (userName) => {
     axios.get('https://api.github.com/users/' + userName)
         .then( (response) => {
-            console.log(response)
-            userInfos = response
+            userInfos = response.data
         })
         .catch( (err) => console.log(err) )
 
+       
     return(userInfos)
     }
 
 
-export default apiRequest
+export default getUser

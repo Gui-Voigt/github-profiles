@@ -2,7 +2,8 @@
 import './styles/global.css'
 import Header from './components/Header.vue'
 import Content from './components/Content.vue'
-import apiRequest from './services/api'
+import getUser from './services/getUser'
+import getRepos from './services/getRepos'
 
 
 
@@ -19,13 +20,21 @@ export default{
   },
 
   data(){
-    userInfos : {}
-    reposInfos : {}
+    return{
+      userInfos : "",
+      reposInfos : "",
+      userLoaded : false,
+      reposResponse: ""
+
+    }
   },
 
   methods: {
     reqApi(userName){
-    apiRequest(userName)      
+      this.userInfos = getUser(userName)
+      let reposResponse = getRepos(userName)
+      this.reposInfos = reposResponse[0]
+      this.userLoaded = reposResponse[1]
     }
   },
 
@@ -38,7 +47,7 @@ export default{
   <div>
     <Header />
     <Content @sendUsername="reqApi" />
-    {{userInfos}}
+    {{userLoaded}}
   </div>
 </template>
 
