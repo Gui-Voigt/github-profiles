@@ -2,7 +2,8 @@
 
 :root{
     --main-color: #5c646d;
-    --light: #E3E3E3
+    --light: #E3E3E3;
+    --hover-color: #e36209;
 }
 
 *{

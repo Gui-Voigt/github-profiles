@@ -12,6 +12,10 @@ export default{
     }
   },
 
+  props: {
+    userLoaded: String
+  },
+
   components:{
     SearchBar
   },
@@ -21,6 +25,7 @@ export default{
         this.$emit('sendUsername',userName)
     }
   }
+
   
 }
 
@@ -29,7 +34,7 @@ export default{
 <template>
 
     <div id="content">
-       <SearchBar @sendUsername="sendUsername"/>
+       <SearchBar v-if="!userLoaded" @sendUsername="sendUsername"/>
     </div>
 
 </template>

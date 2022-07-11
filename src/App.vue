@@ -36,6 +36,13 @@ export default{
       this.userInfos = getUser(userName)
       this.reposInfos = reposResponse[0]
       this.userLoaded = reposResponse[1]
+    },
+
+    changeUser(){
+      this.userInfos = ""
+      this.reposInfos = ""
+      this.userLoaded = false
+      console.log("limpo")
     }
   },
 
@@ -46,8 +53,8 @@ export default{
 
 <template>
   <div>
-    <Header />
-    <Content @sendUsername="reqApi" />
+    <Header @changeUser="changeUser" :userLoaded="userLoaded"/>
+    <Content @sendUsername="reqApi" :userLoaded="userLoaded"/>
   </div>
 </template>
 
