@@ -60,10 +60,10 @@ export default{
     }
 
     button:hover{
-        color:var(--hover-color);
+        color:var(--seecundary-color);
         cursor: pointer;
         font-size: .625rem;
-        border-color: var(--hover-color)
+        border-color: var(--seecundary-color)
     }
 
     img{

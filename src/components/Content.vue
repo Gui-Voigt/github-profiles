@@ -13,7 +13,7 @@ export default{
   },
 
   props: {
-    userLoaded: String
+    userLoaded: Boolean
   },
 
   components:{
@@ -33,8 +33,8 @@ export default{
 
 <template>
 
-    <div id="content">
-       <SearchBar v-if="!userLoaded" @sendUsername="sendUsername"/>
+    <div id="content" v-if="!userLoaded">
+       <SearchBar  @sendUsername="sendUsername"/>
     </div>
 
 </template>

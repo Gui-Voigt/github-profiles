@@ -1,18 +1,20 @@
 import axios from 'axios'
 
 var reposInfos = {}
-var isSuccesfull = false
+var reposLoaded = false
 
 const getRepos = (userName) => {
     axios.get('https://api.github.com/users/' + userName + "/repos")
-        .then( (response) => {
-            reposInfos = response.data
-            isSuccesfull = true
-        })
-        .catch( (err) => console.log(err) )
+    .then( (response) => {
+        reposInfos = response.data
+        reposLoaded = true
+    })
+    .catch( (err) => {
+        reposInfos = {}
+        reposLoaded = false
+    })
 
-    
-    return([reposInfos, isSuccesfull])
+    return([reposInfos, reposLoaded])
     }
 
 

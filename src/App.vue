@@ -4,6 +4,8 @@ import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 import getUser from './services/getUser'
 import getRepos from './services/getRepos'
+import getStarred from './services/getStarred'
+
 
 
 
@@ -21,28 +23,37 @@ export default{
 
   data(){
     return{
-      userInfos : "",
-      reposInfos : "",
+      userInfos : {},
+      reposInfos : {},
+      starredInfos: {},
       userLoaded : false,
-      reposResponse: ""
 
     }
   },
 
   methods: {
     reqApi(userName){
-      let reposResponse = getRepos(userName)
+      console.log(this.userLoaded)
+      this.clearUser()
 
-      this.userInfos = getUser(userName)
-      this.reposInfos = reposResponse[0]
-      this.userLoaded = reposResponse[1]
+      let userRequest = getUser(userName)
+      this.userInfos = userRequest[0]
+
+      let reposRequest = getRepos(userName)
+      this.reposInfos = reposRequest[0]
+      
+      let starredRequest = getStarred(userName)
+      this.starredInfos = starredRequest[0]
+
+      this.userLoaded = (userRequest[1] && reposRequest[1])
+      console.log((userRequest[1] && reposRequest[1]))
     },
 
-    changeUser(){
-      this.userInfos = ""
-      this.reposInfos = ""
+    clearUser(){
+      this.userInfos = {}
+      this.reposInfos = {}
+      this.starredInfos = {}
       this.userLoaded = false
-      console.log("limpo")
     }
   },
 
@@ -53,7 +64,7 @@ export default{
 
 <template>
   <div>
-    <Header @changeUser="changeUser" :userLoaded="userLoaded"/>
+    <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
     <Content @sendUsername="reqApi" :userLoaded="userLoaded"/>
   </div>
 </template>

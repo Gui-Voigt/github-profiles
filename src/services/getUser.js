@@ -1,17 +1,23 @@
 import axios from 'axios'
 
 var userInfos = {}
+var userLoaded = false
 
 const getUser = (userName) => {
+
     axios.get('https://api.github.com/users/' + userName)
         .then( (response) => {
             userInfos = response.data
+            userLoaded = true
         })
-        .catch( (err) => console.log(err) )
-
-       
-    return(userInfos)
+        .catch( (err) => {
+            userInfos = {}
+            userLoaded = false
+        })
+    
+        return([userInfos, userLoaded])
     }
+
 
 
 export default getUser
