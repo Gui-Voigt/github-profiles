@@ -13,7 +13,10 @@ Although I already know some of the fundamentals of the Vue framework, this was 
 
 I intend to continue the project as a way to continue studying the framework so that I can see the real impact of the concepts, libraries and the like that will build the application ecosystem.
 
-### Warning: we have a buh in this project
+
+
+
+#### Warning: we have a bug in this project
 
 symptom:
 
