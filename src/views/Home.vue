@@ -1,11 +1,13 @@
 <script>
 import Content from '../components/Content.vue'
+import ErrorMessage from '../components/ErrorMessage.vue'
 
 export default{
     name: 'Home',
 
     components: {
-        Content
+        Content,
+        ErrorMessage
     },
 
     props:{
@@ -13,9 +15,9 @@ export default{
     },
 
     data(){
-    return{
-      
-    }
+        return{
+            errorMessageAsVisible : false
+        }
     },
 
     emits:['reqApi'],
@@ -23,11 +25,31 @@ export default{
     methods: {
         reqApi(userName){
             this.$emit('reqApi',userName)
+        },
+
+        
+    },
+
+    created(){
+        console.log(this.$route.params.isFailled)
+        if ( this.$route.params.isFailled ) {
+            this.errorMessageAsVisible = true
         }
     }
+
 }
 </script>
 
 <template>
-    <Content @sendUsername="reqApi" :userLoaded="userLoaded"/>
+    <div>
+        <Content @sendUsername="reqApi" :userLoaded="userLoaded"/>
+        <ErrorMessage v-if="errorMessageAsVisible"/> 
+    </div>
 </template>
+
+<style scoped>
+    div{
+        display: flex;
+        flex-direction: column
+    }
+</style>

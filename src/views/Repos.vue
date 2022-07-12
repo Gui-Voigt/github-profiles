@@ -3,7 +3,6 @@ import Profile from '../components/Profile.vue'
 import Card from '../components/Card.vue'
 import NavBar from '../components/NavBar.vue'
 import FilterBar from '../components/FilterBar.vue'
-import ErrorMessage from '../components/ErrorMessage.vue'
 
 
 export default {
@@ -14,7 +13,6 @@ export default {
         Card,
         NavBar,
         FilterBar,
-        ErrorMessage
     },
     
 
@@ -43,13 +41,23 @@ export default {
     methods:{
         filterChange(filterText){
             this.filterText = filterText
+        },
+
+        goToHome(){
+            console.log("aqui")
+            this.$router.push({name:'home' , params: { isFailled : true }})
         }
     },
 
     computed:{
         filteredPosts(){
             
-            return this.reposArray.filter( repo => repo.name.includes(this.filterText))
+            try{
+                return this.reposArray.filter( repo => repo.name.includes(this.filterText))
+            }catch{
+                this.goToHome()
+                return[]
+            }
             
         }
     },

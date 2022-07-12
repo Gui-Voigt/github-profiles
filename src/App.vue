@@ -47,9 +47,7 @@ export default{
             this.starredInfos = starredRequest[0]
 
 
-            this.userLoaded = (userRequest[1] && reposRequest[1])
-            
-            console.log((userRequest[1] && reposRequest[1]))
+            this.userLoaded = (userRequest[1] && reposRequest[1] && starredRequest[1])
 
             this.$router.push("/repos")
     },
@@ -72,7 +70,7 @@ export default{
 
 <template>
   <div>
-    <Header @click="teste" @changeUser="clearUser" :userLoaded="userLoaded"/>
+    <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
 
     <router-view @reqApi="reqApi" 
       :userLoaded="userLoaded" 

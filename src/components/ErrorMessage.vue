@@ -17,7 +17,7 @@
         align-self: center;
 
         max-width: 350px;
-        margin-top: 20px;
+        margin: 20px;
         padding: .5rem .25rem;
 
         background-color: var(--secundary-color);
