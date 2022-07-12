@@ -7,7 +7,9 @@ export default {
         repoDesc: String,
         repoLeng: String,
         repoUrl: String,
-        repoForks: Number
+        starCount: Number,
+        repoForks: Number,
+        cardType: String
     }
 
 }
@@ -18,7 +20,9 @@ export default {
         <a :href="repoUrl" target="blank">{{repoName}}</a>
         <p>{{repoDesc}}</p>
         <div class="bottomCard">
-            <p>{{repoLeng}}</p>
+            <p v-if="cardType == 'repo' ">{{repoLeng}}</p>
+            <p v-else>{{starCount}}</p>
+
             <p>{{repoForks}}</p>
         </div>
     </section>

@@ -23,9 +23,12 @@ export default{
   data(){
     return{
       userInfos : {},
-      reposInfos : {},
-      starredInfos: {},
+      reposInfos : [],
+      starredInfos: [],
       userLoaded : false,
+
+      reposLength : 0
+      
     }
   },
 
@@ -43,7 +46,9 @@ export default{
             let starredRequest = getStarred(userName)
             this.starredInfos = starredRequest[0]
 
+
             this.userLoaded = (userRequest[1] && reposRequest[1])
+            
             console.log((userRequest[1] && reposRequest[1]))
 
             this.$router.push("/repos")
@@ -56,7 +61,8 @@ export default{
       this.starredInfos = {}
       this.userLoaded = false
       this.$router.push("/")
-    }
+    },
+
   },
 
 
@@ -66,11 +72,12 @@ export default{
 
 <template>
   <div>
-    <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
+    <Header @click="teste" @changeUser="clearUser" :userLoaded="userLoaded"/>
 
     <router-view @reqApi="reqApi" 
       :userLoaded="userLoaded" 
-      :usrImg="userInfos.avatar_url" :usrName="userInfos.name" :repos="reposInfos"
+      :usrImg="userInfos.avatar_url" :usrName="userInfos.name" :repos="reposInfos" :starreds="starredInfos"
+      :reposLength='0' :starredLength='0'
     />
   
   </div>

@@ -1,6 +1,12 @@
 <script>
 export default {
-    name: 'NavBar'
+    name: 'NavBar',
+
+    props:{
+        reposLength : Number,
+        starredLength: Number
+    },
+
     
 }
 </script>
@@ -10,12 +16,12 @@ export default {
 <navbar>
     <ul>
         <li>
-            <router-link class="rl" to="/repos"> Repos <span> 0 </span> </router-link>
+            <router-link class="rl" to="/repos"> Repos <span> {{reposLength}} </span> </router-link>
             
         </li>
         
         <li>
-        <router-link class="rl" to="/starred"> Starred <span> 0 </span> </router-link>
+        <router-link class="rl" to="/starred"> Starred <span> {{starredLength}} </span> </router-link>
         </li>
     </ul>
 </navbar>

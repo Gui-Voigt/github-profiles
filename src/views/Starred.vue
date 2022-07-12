@@ -16,22 +16,20 @@ export default {
     props:{
         usrImg : String,
         usrName: String,
-        repos: Array,
-        starredLength: Number
+        starreds: Array,
+        reposLength: Number,
     },
 
     data(){
         return{
-            cardType: 'repo',
-            reposLength: 0
+            cardType: 'starred',
+            starredLength: 0
         }
     },
 
     mounted(){
-        this.reposLength = this.repos.length
+        this.starredLength = this.starreds.length
     }
-
-
 
 
 }
@@ -43,8 +41,15 @@ export default {
     <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
     
     <ul>
-        <li v-for="repo in repos" :key="repo.id">
-            <Card :repoName="repo.name" :repoDesc="repo.description" :repoLeng="repo.language" :repoForks="repo.forks" :repoUrl="repo.html_url" :cardType="cardType"/>        
+        <li v-for="starred in starreds" :key="starred.id">
+            <Card 
+                :repoName="starred.name" 
+                :repoDesc="starred.description" 
+                :starCount="starred.stargazers_count" 
+                :repoForks="starred.forks" 
+                :repoUrl="starred.html_url" 
+                :cardType="cardType"
+            />        
         </li>
     </ul>
 
