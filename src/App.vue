@@ -7,6 +7,8 @@ import getUser from './services/getUser'
 import getRepos from './services/getRepos'
 import getStarred from './services/getStarred'
 
+import Profile from './components/Profile.vue'
+
 
 </script>
 
@@ -17,7 +19,8 @@ export default{
 
   components: {
     Header,
-    Content
+    Content,
+    Profile
   },
 
   data(){
@@ -66,6 +69,7 @@ export default{
     <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
     <router-view @reqApi="reqApi" :userLoaded="userLoaded"/>
   
+    <Profile :usrImg="userInfos.avatar_url" :usrName="userInfos.name"/>
   </div>
 </template>
 

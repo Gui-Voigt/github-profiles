@@ -15,6 +15,8 @@ const getUser = (userName) => {
             userLoaded = false
         })
     
+        console.log(userInfos)
+
         return([userInfos, userLoaded])
     }
 
