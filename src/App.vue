@@ -1,12 +1,11 @@
 <script setup>
+
 import './styles/global.css'
 import Header from './components/Header.vue'
 import Content from './components/Content.vue'
 import getUser from './services/getUser'
 import getRepos from './services/getRepos'
 import getStarred from './services/getStarred'
-
-
 
 
 </script>
@@ -27,26 +26,26 @@ export default{
       reposInfos : {},
       starredInfos: {},
       userLoaded : false,
-
     }
   },
 
-  methods: {
+   methods: {
     reqApi(userName){
-      console.log(this.userLoaded)
-      this.clearUser()
 
-      let userRequest = getUser(userName)
-      this.userInfos = userRequest[0]
+            console.log(this.userLoaded)
 
-      let reposRequest = getRepos(userName)
-      this.reposInfos = reposRequest[0]
-      
-      let starredRequest = getStarred(userName)
-      this.starredInfos = starredRequest[0]
+            let userRequest = getUser(userName)
+            this.userInfos = userRequest[0]
 
-      this.userLoaded = (userRequest[1] && reposRequest[1])
-      console.log((userRequest[1] && reposRequest[1]))
+            let reposRequest = getRepos(userName)
+            this.reposInfos = reposRequest[0]
+            
+            let starredRequest = getStarred(userName)
+            this.starredInfos = starredRequest[0]
+
+            this.userLoaded = (userRequest[1] && reposRequest[1])
+            console.log((userRequest[1] && reposRequest[1]))
+
     },
 
     clearUser(){
@@ -65,7 +64,8 @@ export default{
 <template>
   <div>
     <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
-    <Content @sendUsername="reqApi" :userLoaded="userLoaded"/>
+    <router-view @reqApi="reqApi" :userLoaded="userLoaded"/>
+  
   </div>
 </template>
 

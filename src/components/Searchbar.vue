@@ -1,12 +1,10 @@
 <script>
-import ErrorMessage from './ErrorMessage.vue'
 export default {
     name: 'SearchBar',
     
     emits:['sendUsername'],
 
     components:{
-        ErrorMessage
     },
 
     data(){
@@ -29,7 +27,6 @@ export default {
 
         </label>   
 
-        <ErrorMessage/>
     </div>
 </template>
 
