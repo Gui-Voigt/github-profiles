@@ -48,12 +48,13 @@ export default {
 
         list-style: none;
         font-size: 1.5rem;
-        font-weight: 900;
+        font-weight: 400;
     }
 
     .router-link-active {
         border-bottom: 5px solid var(--secundary-color);
         width: 100%;
+        font-weight: 700;
     }
 
     .rl{

@@ -70,9 +70,9 @@ export default {
     <div>
         <Profile :usrImg="usrImg" :usrName="usrName"/>
         
-        <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
 
         
+        <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
         <ul>
             <FilterBar @sendFilterText="filterChange"/>
             <li v-for="repo in filteredPosts" :key="repo.id">
