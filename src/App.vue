@@ -7,8 +7,6 @@ import getUser from './services/getUser'
 import getRepos from './services/getRepos'
 import getStarred from './services/getStarred'
 
-import Profile from './components/Profile.vue'
-
 
 </script>
 
@@ -20,7 +18,6 @@ export default{
   components: {
     Header,
     Content,
-    Profile
   },
 
   data(){
@@ -49,6 +46,8 @@ export default{
             this.userLoaded = (userRequest[1] && reposRequest[1])
             console.log((userRequest[1] && reposRequest[1]))
 
+            this.$router.push("/repos")
+
     },
 
     clearUser(){
@@ -56,6 +55,7 @@ export default{
       this.reposInfos = {}
       this.starredInfos = {}
       this.userLoaded = false
+      this.$router.push("/")
     }
   },
 
@@ -67,9 +67,12 @@ export default{
 <template>
   <div>
     <Header @changeUser="clearUser" :userLoaded="userLoaded"/>
-    <router-view @reqApi="reqApi" :userLoaded="userLoaded"/>
+
+    <router-view @reqApi="reqApi" 
+      :userLoaded="userLoaded" 
+      :usrImg="userInfos.avatar_url" :usrName="userInfos.name" :repos="reposInfos"
+    />
   
-    <Profile :usrImg="userInfos.avatar_url" :usrName="userInfos.name"/>
   </div>
 </template>
 
