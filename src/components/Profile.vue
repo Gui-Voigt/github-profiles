@@ -24,7 +24,7 @@ export default{
 
 <style scoped>
     div{
-        width: 100vw;
+        width:auto;
 
         display:flex;
         align-items: center;
@@ -40,6 +40,19 @@ export default{
         width: 70px;
         border-radius: 50%;
     }
+
+    @media (min-width : 1065px){
+        div{
+        flex-direction: column;
+        min-width: 355px;
+        }
+
+        img{
+            height: 210px;
+            width: 210px;
+        }
+    }
+
 
     span{
         font-weight: 700;

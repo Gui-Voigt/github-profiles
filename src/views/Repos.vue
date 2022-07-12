@@ -67,24 +67,43 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="container">
+
         <Profile :usrImg="usrImg" :usrName="usrName"/>
         
-
-        
-        <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
-        <ul>
-            <FilterBar @sendFilterText="filterChange"/>
-            <li v-for="repo in filteredPosts" :key="repo.id">
-                <Card :repoName="repo.name" :repoDesc="repo.description" :repoLeng="repo.language" :repoForks="repo.forks" :repoUrl="repo.html_url" :cardType="cardType"/>        
-            </li>
-        </ul>
+        <div>
+            <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
+            <ul>
+                <FilterBar @sendFilterText="filterChange"/>
+                <li v-for="repo in filteredPosts" :key="repo.id">
+                    <Card 
+                    :repoName="repo.name" 
+                    :repoDesc="repo.description" 
+                    :repoLeng="repo.language" 
+                    :repoForks="repo.forks" 
+                    :repoUrl="repo.html_url" 
+                    :cardType="cardType"/>        
+                </li>
+            </ul>
+        </div>
 
     </div>
     
 </template>
 
 <style scoped>
+
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width : 1065px){
+        .container{
+            flex-direction: row;
+        }
+        
+    }
 
     div.errorMessage{
         margin:0 auto;

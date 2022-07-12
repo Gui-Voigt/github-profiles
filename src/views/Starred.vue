@@ -54,28 +54,43 @@ export default {
 </script>
 
 <template>
-
-    <Profile :usrImg="usrImg" :usrName="usrName"/>
-    
-        <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
-    <ul>
-        <FilterBar @sendFilterText="filterChange"/>
-        <li v-for="starred in filteredPosts" :key="starred.id">
-            <Card 
-                :repoName="starred.name" 
-                :repoDesc="starred.description" 
-                :starCount="starred.stargazers_count" 
-                :repoForks="starred.forks" 
-                :repoUrl="starred.html_url" 
-                :cardType="cardType"
-            />        
-        </li>
-    </ul>
+    <div class="container">
+        <Profile :usrImg="usrImg" :usrName="usrName"/>
+        
+        <div>
+            <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
+            <ul>
+                <FilterBar @sendFilterText="filterChange"/>
+                <li v-for="starred in filteredPosts" :key="starred.id">
+                    <Card 
+                        :repoName="starred.name" 
+                        :repoDesc="starred.description" 
+                        :starCount="starred.stargazers_count" 
+                        :repoForks="starred.forks" 
+                        :repoUrl="starred.html_url" 
+                        :cardType="cardType"
+                    />        
+                </li>
+            </ul>
+        </div>
+    </div>
 
     
 </template>
 
 <style scoped>
+
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    @media (min-width : 1065px){
+        .container{
+            flex-direction: row;
+        }
+    }   
+        
 
     ul{
         margin:0 auto;
