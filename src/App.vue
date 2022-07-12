@@ -52,8 +52,8 @@ export default{
             console.log((userRequest[1] && reposRequest[1]))
 
             this.$router.push("/repos")
-
     },
+
 
     clearUser(){
       this.userInfos = {}

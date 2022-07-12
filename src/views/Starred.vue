@@ -2,6 +2,7 @@
 import Profile from '../components/Profile.vue'
 import Card from '../components/Card.vue'
 import NavBar from '../components/NavBar.vue'
+import FilterBar from '../components/FilterBar.vue'
 
 
 export default {
@@ -10,7 +11,8 @@ export default {
     components: {
         Profile,
         Card,
-        NavBar
+        NavBar,
+        FilterBar
     },
 
     props:{
@@ -23,13 +25,29 @@ export default {
     data(){
         return{
             cardType: 'starred',
-            starredLength: 0
+            starredLength: 0,
+            filterText: "",
+            starredArray: this.starreds,
+        }
+    },
+
+    methods:{
+        filterChange(filterText){
+            this.filterText = filterText
         }
     },
 
     mounted(){
         this.starredLength = this.starreds.length
-    }
+    },
+
+    computed:{
+        filteredPosts(){
+            
+            return this.starredArray.filter( starred => starred.name.includes(this.filterText))
+            
+        }
+    },
 
 
 }
@@ -41,7 +59,8 @@ export default {
     <NavBar :reposLength="reposLength" :starredLength="starredLength"/>
     
     <ul>
-        <li v-for="starred in starreds" :key="starred.id">
+        <FilterBar @sendFilterText="filterChange"/>
+        <li v-for="starred in filteredPosts" :key="starred.id">
             <Card 
                 :repoName="starred.name" 
                 :repoDesc="starred.description" 
